@@ -1,0 +1,15 @@
+{
+  "name": "sugar",
+  "port": 4000,
+
+
+  "view": {
+    "root": "./view",
+    "application": "./applications"
+  },
+
+  "static": {
+    "route": "/static",
+    "path": "./static"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "presets": [
+    ["@babel/preset-react"],
+    [
+      "@babel/preset-env", {
+        "targets": { "node": "current" },
+        "useBuiltIns": "entry"
+      }
+    ]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties"],
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "@app": "./src"
+      }
+    }]
+  ]
+}
+

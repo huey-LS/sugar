@@ -1,0 +1,40 @@
+{
+  "name": "sugar",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "debug": "cross-env NODE_ENV=development babel-node --inspect-brk=9230 src/server.js",
+    "dev": "cross-env NODE_ENV=development node bootstrap/start.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.2",
+    "pm2": "^3.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "koa-react-view": "^3.0.0",
+    "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
+  }
+}
