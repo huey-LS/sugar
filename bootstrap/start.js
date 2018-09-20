@@ -31,9 +31,9 @@ pm2.connect(async function (err) {
     cwd: path.join(__dirname, '../'),
     error_file: './logs/err.log',
     out_file: './logs/out.log',
-    watch: NODE_ENV === 'development' ? ['src/view'] : false,
+    watch: NODE_ENV === 'development' ? ['src'] : false,
     ignore_watch: ["node_modules", "static"],
-    autorestart: false,
+    autorestart: true,
     logDateFormat: 'YYYY-MM-DD HH:mm:ss'
   }
 
@@ -52,6 +52,12 @@ pm2.connect(async function (err) {
           bus.on('log:out', ({ process, data }) => {
             if (process.name === serverName) {
               console.log(data);
+            }
+          });
+
+          bus.on('log:err', ({ process, data }) => {
+            if (process.name === serverName) {
+              console.error(data);
             }
           });
         });
