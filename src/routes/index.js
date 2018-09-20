@@ -8,7 +8,7 @@ export default class Routes {
       {
         layout: 'layout/html',
         title: 'title',
-        initializeData: { user: '<>aa\'\"a'}
+        initializeData: { user: '<Hello>'}
       }
     );
   }
