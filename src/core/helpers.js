@@ -15,3 +15,19 @@ export function createThunkAttributeDescriptor (callback) {
     }
   }
 }
+
+export function createThunk (callback) {
+  return function (options)  {
+    return function (thunkOptions) {
+      return callback(options, thunkOptions)
+    }
+  }
+}
+
+export function extractData (data, ...args) {
+  if (typeof data === 'function') {
+    return data(...args);
+  } else {
+    return data;
+  }
+}

@@ -1,4 +1,5 @@
-import { createThunkAttributeDescriptor } from './helpers';
+import request from 'request';
+import { createThunkAttributeDescriptor, extractData } from './helpers';
 
 /**
  * @enum {RouteMethod}
@@ -59,3 +60,35 @@ export default function appendRoutes (router, routes) {
   return router;
 }
 
+export function doForward (ctx, to, options = {}) {
+  let customHeaders = options.headers || {};
+  ctx.body = ctx.req.pipe(
+    request({
+      url: to,
+      method: ctx.request.method,
+      headers: {
+        ...ctx.request.headers,
+        ...customHeaders
+      }
+    })
+  );
+}
+
+export function appendForward (router, forwards) {
+  forwards.forEach((forward) => {
+    router.all(forward.from, async function (ctx, next) {
+      let to = extractData(forward.to, ctx);
+      let query = ctx.request.url.split('?')[1];
+      if (query && to.indexOf('?') === -1) {
+        to = to + '?' + query;
+      }
+      let customHeaders = extractData(forward.headers, ctx);
+      console.log(`[forward] method: [${ctx.request.method}] from: [${ctx.request.url}], to: [${to}]`);
+      doForward(ctx, to, {
+        headers: customHeaders
+      })
+    })
+  })
+
+  return router;
+}

@@ -1,4 +1,6 @@
 import { GetRoute, PostRoute, PutRoute, DelRoute, AllRoute } from '@app/core/router';
+import format, { query, params } from '@app/core/params';
+// import validator from './validator';
 
 export default class Routes {
   @GetRoute('/')
@@ -11,6 +13,17 @@ export default class Routes {
         initializeData: { user: '<Hello>'}
       }
     );
+  }
+
+  @GetRoute('/params/:id')
+  @format({
+    name: query('name'),
+    params: params('id')
+  })
+  static getParams = (ctx, next) => {
+    // ctx.params, ctx.query
+    console.log(ctx.formatedParams);
+    ctx.body = 'get /params';
   }
 
   @GetRoute('/test')

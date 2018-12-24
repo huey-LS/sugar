@@ -15,7 +15,7 @@ class Config {
     return Object.keys(json).reduce((flattened, key) => {
       let data = json[key];
       let childPath = path ? `${path}.${key}` : key;
-      if (typeof data === 'string' || typeof data === 'number') {
+      if (typeof data === 'string' || typeof data === 'number' || Array.isArray(data)) {
         flattened[childPath] = data;
       } else {
         Object.assign(flattened, this.flat(data, childPath))

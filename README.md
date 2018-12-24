@@ -27,7 +27,7 @@ config.get('server.name');
 文件路径：`src/configs/server.json`
 
 已支持的配置预览
-```json
+```js
 {
   "name": "sugar", // http服务名字
   "port": 4000, // 监听的端口号

@@ -7,7 +7,7 @@ import ReactDOMServer from 'react-dom/server';
 // import reactView from 'koa-react-view';
 
 import config from './config';
-import appendRoutes from './router';
+import appendRoutes, { appendForward } from './router';
 
 const basePath = '../'
 
@@ -62,6 +62,17 @@ export default function (configs, routes) {
     }
   });
   app.use(router.routes());
+
+  // forward
+  const forward = config.get('proxy.forward')
+  if (Array.isArray(forward) && forward.length > 0) {
+    app.use(
+      appendForward(
+        new Router(),
+        forward
+      ).routes()
+    );
+  }
 
 
   const serverName = config.get('server.name');
